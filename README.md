@@ -33,3 +33,7 @@ activate canada
 ## Maintainers
 
 - [Elijah Ward](https://github.com/elijah-ward)
+- [Zain Hemani](https://github.com/zhemani)
+- [Veronica Witzig](https://github.com/VeronicaWitzig)
+- [Chuanheng He](https://github.com/henryhehe)
+- [Samir Kazi]
