@@ -36,4 +36,4 @@ activate canada
 - [Zain Hemani](https://github.com/zhemani)
 - [Veronica Witzig](https://github.com/VeronicaWitzig)
 - [Chuanheng He](https://github.com/henryhehe)
-- [Samir Kazi]
+- [Samir Kazi](https://github.com/SamirK15)
