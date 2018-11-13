@@ -24,5 +24,3 @@ dependencies:
     - python-can==3.0.0
     - typing==3.6.6
     - wrapt==1.10.11
-prefix: /Users/eward/anaconda3/envs/can
-
