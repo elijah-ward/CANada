@@ -1,9 +1,11 @@
 # import the library
 import can
-from ecu.engine import Engine
-from ecu.brakes import Brakes
-from ecu.infotainment import Infotainment
-from ecu.steering import Steering
+import threading
+from critical_ecu.engine import Engine
+from critical_ecu.brakes import Brakes
+from critical_ecu.steering import Steering
+from non_critical_ecu.infotainment import Infotainment
+
 
 class Vehicle:
 
@@ -22,14 +24,18 @@ class Vehicle:
 		message = can.Message(arbitration_id=123, extended_id=True,
 		                      data=[0x11, 0x22, 0x33])
 
-		bus.send_periodic(message, period=0.25)
+		bus.send_periodic(message, period=1.0)
 
 		eng = Engine()
 		brakes = Brakes()
 		steering = Steering()
 		infotainment = Infotainment()
 
-		eng.listen()
-		brakes.listen()
-		steering.listen()
-		infotainment.listen()
+		modules = [eng, brakes, steering, infotainment]
+
+		threads = []
+
+		for mod in modules:		
+		    t = threading.Thread(target=mod.listen)
+		    threads.append(t)
+		    t.start()
