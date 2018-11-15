@@ -30,6 +30,13 @@ source activate canada
 activate canada
 ```
 
+## Running the Simulation
+
+In order to run the simulation, execute the following:
+```
+python simulation.py
+```
+
 ## Maintainers
 
 - [Elijah Ward](https://github.com/elijah-ward)
