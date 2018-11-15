@@ -1,18 +1,19 @@
 import can
 
-class Steering:
+class Brakes:
 
 	def __init__(self):
-		self.pitch = 0.5
+		self.gas = 0.0
 
 	def listen(self):
 		bus = can.Bus(interface='virtual',
     		channel='vcan0',
-    		receive_own_messages=True)
+    		bitrate=100000)
 
 		# iterate over received messages
 		for msg in bus:
-		    print("STEERING - {}: {}".format(msg.arbitration_id, msg.data))
+		    print("BRAKES - {}: {}".format(msg.arbitration_id, msg.data))
+
 
 		# or use an asynchronous notifier
 		notifier = can.Notifier(bus, [can.Logger("recorded.log"), can.Printer()])
