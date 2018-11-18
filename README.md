@@ -37,6 +37,11 @@ In order to run the simulation, execute the following:
 python simulation.py
 ```
 
+## TODO / Roadmap
+
+- Add additional vehicles/simulations for compromised scenarios
+- Accept parsing of input CAN data for 
+
 ## Maintainers
 
 - [Elijah Ward](https://github.com/elijah-ward)
