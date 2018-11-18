@@ -1,6 +1,6 @@
 import can
 
-class Infotainment:
+class ClimateControl:
 
 	def __init__(self):
 		self.volume = 0.0
@@ -13,7 +13,7 @@ class Infotainment:
 
 		# iterate over received messages
 		for msg in bus:
-		    print("INFOTAINMENT - {}: {}".format(msg.arbitration_id, msg.data))
+		    print("CLIMATE CONTROL - {}: {}".format(msg.arbitration_id, msg.data))
 
 		# or use an asynchronous notifier
 		notifier = can.Notifier(bus, [can.Logger("recorded.log"), can.Printer()])

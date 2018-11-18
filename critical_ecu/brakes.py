@@ -8,7 +8,7 @@ class Brakes:
 	def listen(self):
 		bus = can.Bus(interface='virtual',
     		channel='vcan0',
-    		bitrate=100000)
+    		bitrate=50000)
 
 		# iterate over received messages
 		for msg in bus:
