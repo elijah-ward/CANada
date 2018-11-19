@@ -1,5 +1,4 @@
 import can
-from utils.mask_helper import MaskHelper
 
 class FuelInjection:
 
@@ -13,9 +12,6 @@ class FuelInjection:
 	def listen(self):
 		bus = can.Bus(interface='virtual',
     		channel='vcan0')
-
-		mh = MaskHelper()
-		mh.check_match(100, self.filters[0]["can_id"], self.filters[0]["can_mask"])
 
 		# or use an asynchronous notifier
 		notifier = can.Notifier(bus, [can.Logger("recorded.log"), can.Printer()])
