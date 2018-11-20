@@ -1,9 +1,14 @@
 import can
+import random
+import time
 from messages.message_factory import Message
 
 class DriverControl:
 
 	def __init__(self):
+
+		# Longest time in seconds between actions
+		self.action_delay_factor = 0.2
 		
 		#########################
 		# Virtual bus instances #
@@ -20,35 +25,40 @@ class DriverControl:
 	def apply_brakes(self):
 		# message with id for the brakes ecu
 		brake_message = Message(target_component='brakes', payload=[0x11, 0x11, 0x11])
-		self.critical_bus.send_periodic(brake_message, period=1.0)
+		self.critical_bus.send(brake_message)
 
 	def accelerate(self):
 		# message with id for the brakes ecu
 		fuel_message = Message(target_component='fuel', payload=[0x11, 0x11, 0x11])
-		self.critical_bus.send_periodic(fuel_message, period=1.0)
+		self.critical_bus.send(fuel_message)
 
 	def turn(self):
 		# message with id for the steering ecu
 		steering_message = Message(target_component='steering', payload=[0x11, 0x11, 0x11])
-		self.critical_bus.send_periodic(steering_message, period=1.0)
+		self.critical_bus.send(steering_message)
 
 	def change_music(self):
 		# message with id for the infotainment ecu
 		infotainment_message = Message(target_component='infotainment', payload=[0x64, 0x64, 0x64])
-		self.non_critical_bus.send_periodic(infotainment_message, period=1.0)
+		self.non_critical_bus.send(infotainment_message)
 		
 	def adjust_temperature(self):
 		# message with id for the climate control ecu
 		climate_message = Message(target_component='climate_control', payload=[0x65, 0x65, 0x65])
-		self.non_critical_bus.send_periodic(climate_message, period=1.0)
+		self.non_critical_bus.send(climate_message)
+
+	def drive(self):
+
+		actions = [self.apply_brakes, self.accelerate, self.turn, self.change_music, self.adjust_temperature]
+
+		while True:
+			actidx = random.randint(0,4)
+			actions[actidx]()
+			time.sleep(random.random() * self.action_delay_factor)
 
 	def start(self):
 
-		self.accelerate()
-		self.apply_brakes()
-		self.turn()
-		self.change_music()
-		self.adjust_temperature()
+		self.drive()
 
 
 
