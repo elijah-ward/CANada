@@ -6,10 +6,16 @@ class Infotainment:
 		self.volume = 0.0
 		self.mode = 'menu'
 		self.brightness = 0.5
+		self.filters = [{
+			"can_id": 0x40,
+			"can_mask": 0x12345
+		}]
 
 	def listen(self):
 		bus = can.Bus(interface='virtual',
     		channel='vcan1')
+
+		bus.set_filters(self.filters)
 
 		# iterate over received messages
 		for msg in bus:
