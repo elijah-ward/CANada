@@ -40,7 +40,16 @@ python simulation.py
 ## TODO / Roadmap
 
 - Add additional vehicles/simulations for compromised scenarios
-- Accept parsing of input CAN data for 
+- Add dispatching of certain messages to bus by ECU (inter-bus)
+- Implement various HSM defense strategy algos
+- specified by "mode" HSM is started in
+- Create adversarial nodes on bus
+- DDOS node
+- Replay attack node
+
+
+- [DONE] provide some kind of configuration for normal driving behaviour 
+- [DONE] finish assigning id's to each component and a proper mask
 
 ## Maintainers
 
