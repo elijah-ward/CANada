@@ -11,7 +11,7 @@ class Infotainment:
 			"can_mask": 0x12345
 		}]
 
-	def listen(self):
+	def start(self):
 		bus = can.Bus(interface='virtual',
     		channel='vcan1')
 
