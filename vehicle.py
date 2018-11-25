@@ -29,9 +29,9 @@ class Vehicle:
 		driver_controls = DriverControl()
 
 		# Hardware Security Module
-		# hsm = HSM()
+		hsm = HSM()
 
-		modules = [fuel,brakes,steering,infotainment,climate_control, driver_controls]
+		modules = [fuel,brakes,steering,infotainment,climate_control, driver_controls, hsm]
 
 		threads = []
 
