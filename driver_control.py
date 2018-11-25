@@ -1,6 +1,7 @@
 import can
 import random
 import time
+from config import Config
 from messages.message_factory import Message
 
 class DriverControl:
@@ -8,7 +9,7 @@ class DriverControl:
 	def __init__(self):
 
 		# Longest time in seconds between actions
-		self.action_delay_factor = 0.2
+		self.action_delay_factor = Config.driver_behaviour['action_delay_factor']
 		
 		#########################
 		# Virtual bus instances #
