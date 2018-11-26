@@ -2,12 +2,21 @@
 import can
 import threading
 from hsm.hsm import HSM
+
+# critical ECUs
 from critical_ecu.fuel_injection import FuelInjection
 from critical_ecu.brakes import Brakes
 from critical_ecu.steering import Steering
+
+# non-critical ECUs
 from non_critical_ecu.infotainment import Infotainment
 from non_critical_ecu.climate_control import ClimateControl
+
+# driver behaviour simulator
 from driver_control import DriverControl
+
+# ddos injection adversary
+from adversaries.ddos_infotainment import DDOSInfotainment
 
 
 class Vehicle:
@@ -31,7 +40,10 @@ class Vehicle:
 		# Hardware Security Module
 		hsm = HSM()
 
-		modules = [fuel,brakes,steering,infotainment,climate_control, driver_controls, hsm]
+		# Adversaries
+		adversary = DDOSInfotainment()
+
+		modules = [fuel,brakes,steering,infotainment,climate_control, driver_controls, hsm, adversary]
 
 		threads = []
 
