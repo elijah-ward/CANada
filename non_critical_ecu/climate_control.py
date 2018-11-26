@@ -18,8 +18,8 @@ class ClimateControl:
 		bus.set_filters(self.filters)
 
 		# iterate over received messages
-		for msg in bus:
-		    print("CLIMATE CONTROL - {}: {}".format(msg.arbitration_id, msg.data))
+		# for msg in bus:
+		#     print("CLIMATE CONTROL - {}: {}".format(msg.arbitration_id, msg.data))
 
 		# or use an asynchronous notifier
 		notifier = can.Notifier(bus, [can.Logger("recorded.log"), can.Printer()])
