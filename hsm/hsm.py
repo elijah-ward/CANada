@@ -6,8 +6,7 @@ from hsm.frequency_analyzer import FrequencyAnalyzer
 class HSM:
 
 	def __init__(self):
-		self.frequencies = { v['id'] : 0 for k,v in Config.components.items() }
-		# self.algorithm = FrequencyAnalyzer
+		self.security_module = FrequencyAnalyzer
 
 	def relay_message(message, target):
 		target.send(message)
@@ -19,9 +18,9 @@ class HSM:
 		non_critical_bus = can.Bus(interface='virtual',
     		channel='vcan1')
 
-		listener = FrequencyAnalyzer()
+		crit_listener = self.security_module(Config.general['channels']['critical_bus'])
+		non_crit_listener = self.security_module(Config.general['channels']['non_critical_bus'])
 
-
-		# or use an asynchronous notifier
-		crit_notifier = can.Notifier(critical_bus, [listener])
-		non_crit_notifier = can.Notifier(non_critical_bus, [listener])
+		# asynchronous notifier
+		crit_notifier = can.Notifier(critical_bus, [crit_listener])
+		non_crit_notifier = can.Notifier(non_critical_bus, [non_crit_listener])
