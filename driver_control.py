@@ -23,6 +23,10 @@ class DriverControl:
 		self.non_critical_bus = can.Bus(interface='virtual',
 		              channel='vcan1')
 
+	##############################
+	# Driver Behaviour Functions #
+	##############################
+
 	def apply_brakes(self):
 		# message with id for the brakes ecu
 		brake_message = Message(target_component='brakes', payload=[0x11, 0x11, 0x11])
