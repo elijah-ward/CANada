@@ -20,7 +20,7 @@ class DDOSInfotainment:
 	def start(self):
 
 		time.sleep(Config.adversaries['ddos_infotainment']['start_delay'])
-		hostile_message = Message(target_component='fuel', payload=[0x66, 0x66, 0x66])
+		hostile_message = Message(target_component='fuel', data=[0x66, 0x66, 0x66])
 
 		while True:
 			self.bus.send(hostile_message)
