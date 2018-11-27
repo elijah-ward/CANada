@@ -9,8 +9,8 @@ def create_payload(data, signature):
 
 def get_signature():
 	curr_time = str(time.time())
-	curr_time.split('.')
-	lsd = int(curr_time[len(curr_time)-1])
+	curr_seconds = curr_time.split('.')[0]
+	lsd = int(curr_seconds[len(curr_seconds)-1])
 	return Config.identity_keys[lsd]
 
 def Message(target_component, data):
