@@ -55,7 +55,7 @@ class FrequencyAnalyzer(Listener):
 				print(colored('\nIRREGULAR MESSAGE FREQUENCY - BLOCKING MESSAGE\navg_interval - {}, current_interval - {}, last_timestamp: {}\n'
 					.format(threshold, current_interval, prior_timestamp), 'red'), colored('{}\n'.format(msg), 'red'))
 			else:
-				print(colored('Received Inter-Bus Message... Relaying:\navg_interval - {}, current_interval - {}, last_timestamp: {}\n'
+				print(colored('\nReceived Inter-Bus Message... Relaying:\navg_interval - {}, current_interval - {}, last_timestamp: {}\n'
 					.format(threshold, current_interval, prior_timestamp), 'green'), colored(msg, 'green'))
 				self.outbound_bus.send(msg)
 
