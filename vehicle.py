@@ -15,16 +15,14 @@ from non_critical_ecu.climate_control import ClimateControl
 # driver behaviour simulator
 from driver_control import DriverControl
 
-# ddos injection adversary
-from adversaries.ddos_infotainment import DDOSInfotainment
-from adversaries.external_node import ExternalNode
-
 
 class Vehicle:
 
-	def __init__(self):
+	def __init__(self, adversary, security_module):
 		self.speed = 0
 		self.pitch = 0
+		self.adversary = adversary
+		self.security_module = security_module
 
 	def ignition(self):
 
@@ -39,11 +37,10 @@ class Vehicle:
 		driver_controls = DriverControl()
 
 		# Hardware Security Module
-		hsm = HSM()
+		hsm = HSM(self.security_module)
 
 		# Adversaries
-		# adversary = DDOSInfotainment()
-		adversary = ExternalNode()
+		adversary = self.adversary()
 
 		modules = [fuel,brakes,steering,infotainment,climate_control, driver_controls, hsm, adversary]
 
@@ -53,6 +50,3 @@ class Vehicle:
 		    t = threading.Thread(target=mod.start)
 		    threads.append(t)
 		    t.start()
-
-		while True:
-			continue
