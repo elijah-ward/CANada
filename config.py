@@ -20,10 +20,12 @@ class Config:
 		'security_module': 'FrequencyAnalyzer'
 	}
 
+	# ideal values - action_delay_factor: 0.5
 	driver_behaviour = {
 		'action_delay_factor': 0.5
 	}
 
+	# ideal values - allowed_variance:0.5, training_time:10
 	frequency_analyzer = {
 		'allowed_variance': 0.5,
 		'seconds_training_time': 10
@@ -68,8 +70,14 @@ class Config:
 	}
 
 	message_structure = {
-		'data' : 3,
-		'signature': 128
+		'data' : {
+			'start_byte': 0,
+			'n_bytes': 3
+		},
+		'signature': {
+			'start_byte': 3,
+			'n_bytes': 128
+		}
 	}
 
 	identity_keys = [
@@ -98,9 +106,15 @@ class Config:
 	Following is the configuration for each of the adversaries
 	"""
 
+	# ideal values - start_delay:10, injection_delay:0.1
+
 	adversaries = {
 		'ddos_infotainment': {
 			'injection_delay': 0.1,
 			'start_delay': 20
+		},
+		'external_node': {
+			'injection_delay': 1.0,
+			'start_delay': 10
 		}
 	}
