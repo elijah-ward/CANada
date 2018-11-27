@@ -29,27 +29,27 @@ class DriverControl:
 
 	def apply_brakes(self):
 		# message with id for the brakes ecu
-		brake_message = Message(target_component='brakes', payload=[0x11, 0x11, 0x11])
+		brake_message = Message(target_component='brakes', data=[0x11, 0x11, 0x11])
 		self.critical_bus.send(brake_message)
 
 	def accelerate(self):
 		# message with id for the brakes ecu
-		fuel_message = Message(target_component='fuel', payload=[0x11, 0x11, 0x11])
+		fuel_message = Message(target_component='fuel', data=[0x11, 0x11, 0x11])
 		self.critical_bus.send(fuel_message)
 
 	def turn(self):
 		# message with id for the steering ecu
-		steering_message = Message(target_component='steering', payload=[0x11, 0x11, 0x11])
+		steering_message = Message(target_component='steering', data=[0x11, 0x11, 0x11])
 		self.critical_bus.send(steering_message)
 
 	def change_music(self):
 		# message with id for the infotainment ecu
-		infotainment_message = Message(target_component='infotainment', payload=[0x64, 0x64, 0x64])
+		infotainment_message = Message(target_component='infotainment', data=[0x64, 0x64, 0x64])
 		self.non_critical_bus.send(infotainment_message)
 		
 	def adjust_temperature(self):
 		# message with id for the climate control ecu
-		climate_message = Message(target_component='climate_control', payload=[0x65, 0x65, 0x65])
+		climate_message = Message(target_component='climate_control', data=[0x65, 0x65, 0x65])
 		self.non_critical_bus.send(climate_message)
 
 	def drive(self):
