@@ -3,6 +3,7 @@ import random
 import time
 from config import Config
 from messages.message_factory import Message
+from utils.better_printer import BetterPrinter
 
 class Infotainment:
 
@@ -25,12 +26,8 @@ class Infotainment:
 
 		self.bus.set_filters(self.filters)
 
-		# iterate over received messages
-		# for msg in bus:
-		#     print("INFOTAINMENT - {}: {}".format(msg.arbitration_id, msg.data))
-
-		# or use an asynchronous notifier
-		notifier = can.Notifier(self.bus, [can.Logger("recorded.log"), can.Printer()])
+		# asynchronous notifier
+		notifier = can.Notifier(self.bus, [can.Logger("recorded.log"), BetterPrinter()])
 
 		while True:
 			self.request_fuel_diagnostic()
