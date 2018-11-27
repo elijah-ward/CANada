@@ -17,6 +17,7 @@ from driver_control import DriverControl
 
 # ddos injection adversary
 from adversaries.ddos_infotainment import DDOSInfotainment
+from adversaries.external_node import ExternalNode
 
 
 class Vehicle:
@@ -41,7 +42,8 @@ class Vehicle:
 		hsm = HSM()
 
 		# Adversaries
-		adversary = DDOSInfotainment()
+		# adversary = DDOSInfotainment()
+		adversary = ExternalNode()
 
 		modules = [fuel,brakes,steering,infotainment,climate_control, driver_controls, hsm, adversary]
 
