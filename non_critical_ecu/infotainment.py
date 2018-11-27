@@ -18,9 +18,8 @@ class Infotainment:
 		self.diagnostic_delay_factor = Config.components['infotainment']['diagnostic_delay_factor']
 
 	def request_fuel_diagnostic(self):
-		fuel_message = Message(target_component='fuel', payload=[0x22, 0x22, 0x22])
+		fuel_message = Message(target_component='fuel', data=[0x22, 0x22, 0x22])
 		self.bus.send(fuel_message)
-
 
 	def start(self):
 
@@ -35,5 +34,5 @@ class Infotainment:
 
 		while True:
 			self.request_fuel_diagnostic()
-			time.sleep(random.random() * self.diagnostic_delay_factor)
+			time.sleep(self.diagnostic_delay_factor)
 
