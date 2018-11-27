@@ -2,11 +2,12 @@ import can
 import time
 from config import Config
 from hsm.frequency_analyzer import FrequencyAnalyzer
+from hsm.authentication import Authentication
 
 class HSM:
 
 	def __init__(self):
-		self.security_module = FrequencyAnalyzer
+		self.security_module = Authentication
 
 	def relay_message(message, target):
 		target.send(message)
