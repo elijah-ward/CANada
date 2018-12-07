@@ -31,6 +31,12 @@ class Config:
 		'seconds_training_time': 10
 	}
 
+	intrusion_detection = {
+		'detection_rate': 0.99,
+		'start_delay': 5,
+		'scan_delay': 1
+	}
+
 	"""
 	Each component in this configuration represents an ECU within a CV
 
