@@ -3,6 +3,8 @@ Controller Area Network Automatic Defense Architecture (CANada)
 
 CANada is a prototype architecture for improving the security of a Connected Vehicle (CV) using Hardware Security Modules (HSM) to monitor the traffic on a CAN bus. Most code in this project is related to simulating a CAN bus and the behaviour of various Engine Control Units (ECU) and HSMs.
 
+For the most consistent experience we recommend running the simulations in either **Linux** or **MacOS**.
+
 ## Getting Started
 
 ## Useful Tools
@@ -23,18 +25,32 @@ conda env create -f environment.yml
 
 **MacOS/Linux**
 ```
-source activate canada
+source activate can
 ```
 **Windows**
 ```
-activate canada
+activate can
 ```
 
 ## Running the Simulation
 
-In order to run the simulation, execute the following:
+The simulations will run until the process is killed by the user. To do so press `ctrl+c`.
+
+In order to run each of the simulations, execute the following:
+
+#### Frequency Moderation Security Simulation
 ```
-python simulation.py
+python freq_simulation.py
+```
+
+#### Authentication Security Simulation
+```
+python auth_simulation.py
+```
+
+#### Intrusion Detection Simulation
+```
+python intrusion_simulation.py
 ```
 
 ## Maintainers
