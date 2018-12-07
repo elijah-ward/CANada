@@ -9,7 +9,7 @@ For the most consistent experience we recommend running the simulations in eithe
 
 ## Useful Tools
 
-- `conda` - https://conda.io/miniconda.html (useful in managing multiple python environments)
+- `conda` - https://conda.io/miniconda.html (useful in managing multiple python environments, be sure to install Python 3.7 version)
 
 ### Conda
 
