@@ -115,6 +115,6 @@ class Config:
 		},
 		'external_node': {
 			'injection_delay': 1.0,
-			'start_delay': 10
+			'start_delay': 12
 		}
 	}
