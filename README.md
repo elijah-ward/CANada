@@ -16,7 +16,7 @@ In this repository there is an `environment.yml` file that contains information 
 #### Creating a New Environment in Conda From an `environment.yml` File
 
 ```
-conda create -f environment.yml
+conda env create -f environment.yml
 ```
 
 #### Switching Environments Created Using Conda
@@ -36,20 +36,6 @@ In order to run the simulation, execute the following:
 ```
 python simulation.py
 ```
-
-## TODO / Roadmap
-
-- Add additional vehicles/simulations for compromised scenarios
-- Add dispatching of certain messages to bus by ECU (inter-bus)
-- Implement various HSM defense strategy algos
-- specified by "mode" HSM is started in
-- Create adversarial nodes on bus
-- DDOS node
-- Replay attack node
-
-
-- [DONE] provide some kind of configuration for normal driving behaviour 
-- [DONE] finish assigning id's to each component and a proper mask
 
 ## Maintainers
 
