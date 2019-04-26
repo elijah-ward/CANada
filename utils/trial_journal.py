@@ -7,8 +7,8 @@ class TrialJournal:
 		self.innocent_messages = 0
 		self.hostile_messages = 0
 		self.innocent_blocked = 0
-		self.hostile_blocked = 0
 		self.innocent_forwarded = 0
+		self.hostile_blocked = 0
 		self.hostile_forwarded = 0
 
 	def incr_innocent(self):

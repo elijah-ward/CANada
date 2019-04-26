@@ -14,7 +14,7 @@ class IntrusionInfotainment:
 	def __init__(self, journal):
 		self.is_malicious = False
 		self.bus = can.Bus(interface='virtual', channel='vcan1')
-		self.monitor_hsm = ECUMonitor()
+		self.monitor_hsm = ECUMonitor(journal)
 		self.journal = journal
 
 	def start(self, stop_event):
