@@ -2,16 +2,30 @@ name: can
 channels:
   - defaults
 dependencies:
-  - ca-certificates=2018.03.07
-  - certifi=2018.10.15
+  - blas=1.0
+  - ca-certificates=2019.1.23
+  - certifi=2019.3.9
+  - intel-openmp=2019.3
+  - libcxx=4.0.1
+  - libcxxabi=4.0.1
   - libedit=3.1.20170329
   - libffi=3.2.1
+  - libgfortran=3.0.1
+  - mkl=2019.3
+  - mkl_fft=1.0.10
+  - mkl_random=1.0.2
   - ncurses=6.1
+  - numpy=1.16.3
+  - numpy-base=1.16.3
   - openssl=1.1.1
+  - pandas=0.24.2
   - pip=18.1
   - python=3.6.7
+  - python-dateutil=2.8.0
+  - pytz=2019.1
   - readline=7.0
   - setuptools=40.5.0
+  - six=1.12.0
   - sqlite=3.25.2
   - termcolor=1.1.0
   - tk=8.6.8
