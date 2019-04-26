@@ -13,7 +13,7 @@ class ExternalNode:
 		self.bus = can.Bus(interface='virtual', channel='vcan1')
 		self.journal = journal
 
-	def start(self):
+	def start(self, stop_event):
 
 		# Normally this message would be stolen off of the bus and then replayed, but for sake of demo we'll use a message with a random key
 		hostile_message = Message(target_component='fuel', data=[0x66, 0x66, 0x66])
@@ -21,5 +21,10 @@ class ExternalNode:
 
 		while True:
 			self.bus.send(hostile_message)
+			self.journal.incr_hostile()
 			time.sleep(Config.adversaries['ddos_infotainment']['injection_delay'])
+
+			if stop_event.is_set():
+				self.bus.shutdown()
+				break
 

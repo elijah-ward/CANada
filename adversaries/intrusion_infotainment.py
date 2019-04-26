@@ -17,7 +17,7 @@ class IntrusionInfotainment:
 		self.monitor_hsm = ECUMonitor()
 		self.journal = journal
 
-	def start(self):
+	def start(self, stop_event):
 		start_time = time.time()
 
 		while True:
@@ -27,5 +27,9 @@ class IntrusionInfotainment:
 				self.is_malicious = True
 
 			time.sleep(Config.intrusion_detection['scan_delay'])
+
+			if stop_event.is_set():
+				self.bus.shutdown()
+				break
 
 

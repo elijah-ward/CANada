@@ -10,7 +10,7 @@ class Brakes:
 			"can_mask": 0x12345
 		}]
 
-	def start(self):
+	def start(self, stop_event):
 		bus = can.Bus(interface='virtual',
     		channel='vcan0')
 
@@ -18,3 +18,10 @@ class Brakes:
 		
 		# asynchronous notifier
 		notifier = can.Notifier(bus, [can.Logger("recorded.log"), BetterPrinter()])
+
+		while True:
+			if stop_event.is_set():
+				notifier.stop()
+				bus.shutdown()
+				break
+

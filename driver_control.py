@@ -59,7 +59,7 @@ class DriverControl:
 		self.non_critical_bus.send(climate_message)
 		self.journal.incr_innocent()
 
-	def drive(self):
+	def drive(self, stop_event):
 
 		actions = [self.apply_brakes, self.accelerate, self.turn, self.change_music, self.adjust_temperature]
 
@@ -67,10 +67,14 @@ class DriverControl:
 			actidx = random.randint(0,4)
 			actions[actidx]()
 			time.sleep(random.random() * self.action_delay_factor)
+			if stop_event.is_set():
+				self.critical_bus.shutdown()
+				self.non_critical_bus.shutdown()
+				break
 
-	def start(self):
+	def start(self, stop_event):
 
-		self.drive()
+		self.drive(stop_event)
 
 
 

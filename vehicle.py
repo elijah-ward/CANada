@@ -35,19 +35,31 @@ class Vehicle:
 		climate_control = ClimateControl()
 
 		# Dispatchers
-		driver_controls = DriverControl()
+		driver_controls = DriverControl(self.journal)
 
 		# Hardware Security Module
-		hsm = HSM(self.security_module)
+		hsm = HSM(self.security_module, self.journal)
 
 		# Adversaries
-		adversary = self.adversary()
+		adversary = self.adversary(self.journal)
 
 		modules = [fuel,brakes,steering,infotainment,climate_control, driver_controls, hsm, adversary]
 
 		threads = []
 
+		start_time = time.time()
+		stop_event = threading.Event()
+		print('Start Time: {}'. format(start_time))
 		for mod in modules:		
-		    t = threading.Thread(target=mod.start)
+		    t = threading.Thread(target=mod.start, args=(stop_event,))
 		    threads.append(t)
 		    t.start()
+
+		while True:
+			elapsed_time = time.time() - start_time
+			if elapsed_time >= duration:
+				stop_event.set()
+				break
+
+		for t in threads:
+			t.join()

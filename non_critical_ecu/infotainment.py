@@ -22,7 +22,7 @@ class Infotainment:
 		fuel_message = Message(target_component='fuel', data=[0x22, 0x22, 0x22])
 		self.bus.send(fuel_message)
 
-	def start(self):
+	def start(self, stop_event):
 
 		self.bus.set_filters(self.filters)
 
@@ -30,6 +30,12 @@ class Infotainment:
 		notifier = can.Notifier(self.bus, [can.Logger("recorded.log"), BetterPrinter()])
 
 		while True:
+
+			if stop_event.is_set():
+				notifier.stop()
+				self.bus.shutdown()
+				break
+
 			self.request_fuel_diagnostic()
 			time.sleep(self.diagnostic_delay_factor)
 
