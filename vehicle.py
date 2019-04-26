@@ -1,6 +1,8 @@
 # import the library
 import can
 import threading
+import time
+import sys
 from hsm.hsm import HSM
 
 # critical ECUs
@@ -18,13 +20,12 @@ from driver_control import DriverControl
 
 class Vehicle:
 
-	def __init__(self, adversary, security_module):
-		self.speed = 0
-		self.pitch = 0
+	def __init__(self, adversary, security_module, journal):
 		self.adversary = adversary
 		self.security_module = security_module
+		self.journal = journal
 
-	def ignition(self):
+	def ignition(self, duration):
 
 		# Listeners
 		fuel = FuelInjection()

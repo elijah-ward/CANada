@@ -7,13 +7,14 @@ import pprint
 
 class Authentication(Listener):
 
-	def __init__(self, channel):
+	def __init__(self, channel, journal):
 		self.channel = channel
 
 		# Outward bus, target channel is vcan0 if this listener is receiving on vcan1 and vice-versa
 		self.outbound_channel = 'vcan1' if channel == 'vcan0' else 'vcan0'
 		self.outbound_bus = can.Bus(interface='virtual', channel=self.outbound_channel)
 		self.printer = pprint.PrettyPrinter(indent=4)
+		self.journal = journal
 
 	def verify_signature(self, msg):
 		msg_time = str(msg.timestamp)

@@ -11,10 +11,11 @@ and uses it to flood messages onto the bus
 
 class IntrusionInfotainment:
 
-	def __init__(self):
+	def __init__(self, journal):
 		self.is_malicious = False
 		self.bus = can.Bus(interface='virtual', channel='vcan1')
 		self.monitor_hsm = ECUMonitor()
+		self.journal = journal
 
 	def start(self):
 		start_time = time.time()

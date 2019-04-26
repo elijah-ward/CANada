@@ -6,8 +6,9 @@ from config import Config
 
 class ECUMonitor:
 
-	def __init__(self):
+	def __init__(self, journal):
 		self.detection_rate = Config.intrusion_detection['detection_rate']
+		self.journal = journal
 
 	def scan(self, malicious_state, bus):
 		threat_detected = False

@@ -6,12 +6,13 @@ from config import Config
 
 class Noop(Listener):
 
-	def __init__(self, channel):
+	def __init__(self, channel, journal):
 		self.channel = channel
 
 		# Outward bus, target channel is vcan0 if this listener is receiving on vcan1 and vice-versa
 		self.outbound_channel = 'vcan1' if channel == 'vcan0' else 'vcan0'
 		self.outbound_bus = can.Bus(interface='virtual', channel=self.outbound_channel)
+		self.journal = journal
 
 	def relay(self, msg):
 

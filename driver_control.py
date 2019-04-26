@@ -6,7 +6,7 @@ from messages.message_factory import Message
 
 class DriverControl:
 
-	def __init__(self):
+	def __init__(self, journal):
 
 		# Longest time in seconds between actions
 		self.action_delay_factor = Config.driver_behaviour['action_delay_factor']
@@ -23,6 +23,8 @@ class DriverControl:
 		self.non_critical_bus = can.Bus(interface='virtual',
 		              channel='vcan1')
 
+		self.journal = journal
+
 	##############################
 	# Driver Behaviour Functions #
 	##############################
@@ -31,26 +33,31 @@ class DriverControl:
 		# message with id for the brakes ecu
 		brake_message = Message(target_component='brakes', data=[0x11, 0x11, 0x11])
 		self.critical_bus.send(brake_message)
+		self.journal.incr_innocent()
 
 	def accelerate(self):
 		# message with id for the brakes ecu
 		fuel_message = Message(target_component='fuel', data=[0x11, 0x11, 0x11])
 		self.critical_bus.send(fuel_message)
+		self.journal.incr_innocent()
 
 	def turn(self):
 		# message with id for the steering ecu
 		steering_message = Message(target_component='steering', data=[0x11, 0x11, 0x11])
 		self.critical_bus.send(steering_message)
+		self.journal.incr_innocent()
 
 	def change_music(self):
 		# message with id for the infotainment ecu
-		infotainment_message = Message(target_component='infotainment', data=[0x64, 0x64, 0x64])
+		infotainment_message = Message(target_component='infotainment', data=[0x11, 0x11, 0x11])
 		self.non_critical_bus.send(infotainment_message)
+		self.journal.incr_innocent()
 		
 	def adjust_temperature(self):
 		# message with id for the climate control ecu
-		climate_message = Message(target_component='climate_control', data=[0x65, 0x65, 0x65])
+		climate_message = Message(target_component='climate_control', data=[0x11, 0x11, 0x11])
 		self.non_critical_bus.send(climate_message)
+		self.journal.incr_innocent()
 
 	def drive(self):
 

@@ -9,8 +9,9 @@ The following class represents an example where an adversary has added an extern
 
 class ExternalNode:
 
-	def __init__(self):
+	def __init__(self, journal):
 		self.bus = can.Bus(interface='virtual', channel='vcan1')
+		self.journal = journal
 
 	def start(self):
 
