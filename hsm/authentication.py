@@ -31,7 +31,15 @@ class Authentication(Listener):
 		if self.verify_signature(msg):
 			print(colored('\nRECEIVED INTER-BUS MESSAGE WITH CORRECT KEY... Relaying:\n','green'), colored(msg, 'green'))
 			self.outbound_bus.send(msg)
+			if bytes(msg.data)[0] == 102:
+				self.journal.incr_hostile_forwarded()
+			else :
+				self.journal.incr_innocent_forwarded()
 		else:
+			if bytes(msg.data)[0] == 102:
+				self.journal.incr_hostile_blocked()
+			else :
+				self.journal.incr_innocent_blocked()
 			print(colored('\nINCORRECT KEY - BLOCKING MESSAGE\n', 'red'), colored('{}\n'.format(msg), 'red'))
 
 	def on_message_received(self, msg):

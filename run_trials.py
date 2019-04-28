@@ -82,6 +82,6 @@ for i in range(args.n_trials):
 print(intr_collection)
 intr_df = pd.DataFrame(intr_collection)
 
-freq_df.to_csv('./freq_analysis_stats.csv', header=True)
-auth_df.to_csv('./authentication_stats.csv', header=True)
-intr_df.to_csv('./intrusion_detection_stats.csv', header=True)
+freq_df.to_csv('./freq_analysis_stats.csv', header=True, index=False)
+auth_df.to_csv('./authentication_stats.csv', header=True, index=False)
+intr_df.to_csv('./intrusion_detection_stats.csv', header=True, index=False)

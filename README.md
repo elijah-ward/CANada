@@ -32,6 +32,15 @@ source activate can
 activate can
 ```
 
+## Running Trials to Gather Metrics
+
+In order to run several iterations of the system to gather metrics about the behaviour, run the following command where `N_TRIALS` is the integer number of trials to run and `TRIAL_DURATION` is the duration of the trial in seconds:
+
+```
+python run_trials.py [N_TRIALS] [TRIAL_DURATION]
+```
+
+
 ## Running the Simulation
 
 The simulations will run until the process is killed by the user. To do so press `ctrl+c`.
